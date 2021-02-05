@@ -28,9 +28,50 @@ class BaseDraw():
             fill=color
         )
 
-
     def draw_base_A(self, current_position: int):
-        print("No Imp")
+        self.draw.chord(
+            (
+                (self.center - self.center_offset - 10, current_position),
+                (self.center - self.center_offset + 10, current_position + self.rectangle_size[1])
+            ),
+            start=-90,
+            end=90,
+            fill=self.bases_color["A"]
+        )
+
+    def draw_base_T(self, current_position: int):
+        self.draw.arc(
+            (
+                (self.center - self.center_offset, current_position),
+                (self.center - self.center_offset + 20, current_position + self.rectangle_size[1])
+            ),
+            start=90,
+            end=-90,
+            fill=self.bases_color["T"]
+        )
+
+    def draw_base_C(self, current_position: int):
+        self.draw.polygon(
+            (
+                (self.center - self.center_offset, current_position),
+                (self.center - self.center_offset + 10, current_position + self.rectangle_size[1] / 2),
+                (self.center - self.center_offset, current_position + self.rectangle_size[1])
+            ),
+            fill=self.bases_color["C"]
+        )
+
+    def draw_base_G(self, current_position: int):
+        self.draw.polygon(
+            (
+                (self.center - self.center_offset, current_position),
+                (self.center - self.center_offset + 10, current_position),
+                (self.center - self.center_offset, current_position + self.rectangle_size[1] / 2),
+                (self.center - self.center_offset + 10, current_position + self.rectangle_size[1]),
+                (self.center - self.center_offset, current_position + self.rectangle_size[1])
+            ),
+            fill=self.bases_color["G"]
+        )
+
 
     def draw_base(self, base: str, current_position: int):
         if base in self.bases_color:
@@ -38,11 +79,11 @@ class BaseDraw():
             if base == "A":
                 self.draw_base_A(current_position)
             elif base == "T":
-                print("No Imp")
+                self.draw_base_T(current_position)
             elif base == "C":
-                print("No Imp")
+                self.draw_base_C(current_position)
             elif base == "G":
-                print("No Imp")
+                self.draw_base_G(current_position)
         else:
             error("Invalid base entered A T C G")
 
