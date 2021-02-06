@@ -17,7 +17,7 @@ class BaseDraw():
 
     bases_color = {
         "A": "red",
-        "T": "yellow",
+        "T": "orange",
         "C": "blue",
         "G": "purple"
     }
