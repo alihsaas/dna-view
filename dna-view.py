@@ -14,8 +14,8 @@ nito_bases = {
 
 bases = args[1].upper()
 
-height = len(bases) * 50 + 100
-width = 300
+height = len(bases) * 50 + 80
+width = 400
 
 center = width/2
 
@@ -26,8 +26,12 @@ main_image = Image.new("RGB", (width, height), color="white")
 first_strand = Image.new("RGBA", (width, height), (0, 0, 0, 0))
 second_strand = Image.new("RGBA", (width, height), (0, 0, 0, 0))
 
+sugar_phis = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+
 first_draw_strand = BaseDraw(first_strand)
 second_draw_strand = BaseDraw(second_strand)
+
+sugar_phis_draw = BaseDraw(sugar_phis)
 
 for base in bases:
 
@@ -37,12 +41,19 @@ for base in bases:
     current_position = current_index * 50
 
     first_draw_strand.draw_base(base, current_position)
+    first_draw_strand.draw_hex(current_position)
 
     comp_base = nito_bases[base]
 
     second_draw_strand.draw_base(comp_base, current_position)
 
+    sugar_phis_draw.draw_hex(current_position)
+
     current_index += 1
+
+sugar_phis = sugar_phis.transpose(Image.FLIP_TOP_BOTTOM)
+
+second_strand.paste(sugar_phis, (0, 0), sugar_phis)
 
 second_strand = second_strand.transpose(Image.FLIP_LEFT_RIGHT)
 

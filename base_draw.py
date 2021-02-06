@@ -1,5 +1,14 @@
 from logging import error
 from PIL import Image, ImageDraw
+import math
+
+def hexagon_generator(edge_length, offset):
+  """Generator for coordinates in a hexagon."""
+  x, y = offset
+  for angle in range(0, 360, 60):
+    x += math.cos(math.radians(angle)) * edge_length
+    y += math.sin(math.radians(angle)) * edge_length
+    yield x, y
 
 class BaseDraw():
 
@@ -18,6 +27,12 @@ class BaseDraw():
         self.draw = ImageDraw.Draw(image)
         self.width, self.height = image.size
         self.center = self.width / 2
+
+    def draw_hex(self, current_position: int):
+        hexagon = hexagon_generator(20, (
+            (self.center - self.center_offset - 110, current_position)
+        ))
+        self.draw.polygon(list(hexagon), fill='black')
 
     def draw_base_rect(self, current_position: int, color: str):
         self.draw.rectangle(
