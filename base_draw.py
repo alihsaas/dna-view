@@ -28,11 +28,35 @@ class BaseDraw():
         self.width, self.height = image.size
         self.center = self.width / 2
 
+    def draw_phis(self, current_position: int):
+        r = 10
+        self.draw.line(
+            (
+                (self.center - self.center_offset - 130, current_position - 10),
+                (self.center - self.center_offset - 110, current_position)
+            ),
+            fill="black"
+        )
+        self.draw.ellipse(
+            (
+                (self.center - self.center_offset - 130 - r, current_position - 10 - r),
+                (self.center - self.center_offset - 130 + r, current_position - 10 + r)
+            ),
+            fill="grey"
+        )
+
     def draw_hex(self, current_position: int):
         hexagon = hexagon_generator(20, (
             (self.center - self.center_offset - 110, current_position)
         ))
         self.draw.polygon(list(hexagon), fill='black')
+        self.draw.line(
+            (
+                (self.center - self.center_offset - 100, current_position + 20),
+                (self.center - self.center_offset - 130, current_position + 40)
+            ),
+            fill="black"
+        )
 
     def draw_base_rect(self, current_position: int, color: str):
         self.draw.rectangle(
@@ -90,6 +114,20 @@ class BaseDraw():
 
     def draw_base(self, base: str, current_position: int):
         if base in self.bases_color:
+            self.draw.line(
+                (
+                    (self.center - self.center_offset - 100, current_position + 20),
+                    (self.center - self.rectangle_size[0] - self.center_offset, current_position + self.rectangle_size[1]/2)
+                ),
+                fill="black"
+            ),
+            self.draw.line(
+                (
+                    (self.center - 10, current_position + self.rectangle_size[1]/2),
+                    (self.center, current_position + self.rectangle_size[1]/2)
+                ),
+                fill="black"
+            )
             self.draw_base_rect(current_position, self.bases_color[base])
             if base == "A":
                 self.draw_base_A(current_position)

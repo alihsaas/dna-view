@@ -42,12 +42,14 @@ for base in bases:
 
     first_draw_strand.draw_base(base, current_position)
     first_draw_strand.draw_hex(current_position)
+    first_draw_strand.draw_phis(current_position)
 
     comp_base = nito_bases[base]
 
     second_draw_strand.draw_base(comp_base, current_position)
 
     sugar_phis_draw.draw_hex(current_position)
+    sugar_phis_draw.draw_phis(current_position)
 
     current_index += 1
 
