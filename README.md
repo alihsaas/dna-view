@@ -1,1 +1,1 @@
-![DNA VIEW] (dna-view.png)
+![DNA VIEW](dna-view.png)
