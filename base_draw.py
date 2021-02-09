@@ -10,6 +10,8 @@ def hexagon_generator(edge_length, offset):
     y += math.sin(math.radians(angle)) * edge_length
     yield x, y
 
+
+
 class BaseDraw():
 
     rectangle_size = (60, 20)
@@ -129,6 +131,9 @@ class BaseDraw():
                 fill="black"
             )
             self.draw_base_rect(current_position, self.bases_color[base])
+            self.draw.text((
+                self.center - self.center_offset - 20, current_position
+            ), base, fill="black")
             if base == "A":
                 self.draw_base_A(current_position)
             elif base == "T":

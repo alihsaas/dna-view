@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from logging import error
 from PIL import Image
 from base_draw import BaseDraw
@@ -16,8 +17,6 @@ bases = args[1].upper()
 
 height = len(bases) * 50 + 80
 width = 400
-
-center = width/2
 
 current_index = 1
 
